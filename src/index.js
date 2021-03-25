@@ -1,6 +1,6 @@
 import menuElm from './menu.json';
 import menuTml from './templates/templates.hbs';
-
+import './toggleTheme.js';
 import './css/styles.css';
 
 const galleryEl = document.querySelector('.js-menu');
