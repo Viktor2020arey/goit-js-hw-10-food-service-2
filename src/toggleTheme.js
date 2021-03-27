@@ -8,18 +8,23 @@ const Theme = {
   DARK: 'dark-theme',
 };
 
+const { LIGHT, DARK } = Theme;
+
 refs.toggle.addEventListener('change', toogleClassList);
 refs.toggle.addEventListener('change', toogleLocalStorage);
+
+function classListChange(addClass, removeClass) {
+  refs.body.classList.add(addClass);
+  refs.body.classList.remove(removeClass);
+}
 
 function toogleClassList() {
   const checkToggle = refs.toggle.checked;
 
   if (checkToggle) {
-    refs.body.classList.add(Theme.DARK);
-    refs.body.classList.remove(Theme.LIGHT);
+    classListChange(DARK, LIGHT);
   } else {
-    refs.body.classList.add(Theme.LIGHT);
-    refs.body.classList.remove(Theme.DARK);
+    classListChange(LIGHT, DARK);
   }
 }
 
@@ -27,16 +32,15 @@ function toogleLocalStorage() {
   const checkToggle = refs.toggle.checked;
 
   if (checkToggle) {
-    localStorage.setItem('theme', Theme.DARK);
+    localStorage.setItem('theme', DARK);
   } else {
-    localStorage.removeItem('theme');
-    localStorage.setItem('theme', Theme.LIGHT);
+    localStorage.setItem('theme', LIGHT);
   }
 }
 
 const themInLocal = localStorage.getItem('theme');
 
 if (themInLocal === Theme.DARK) {
-  refs.body.classList.add(Theme.DARK);
+  refs.body.classList.add(DARK);
   refs.toggle.checked = true;
 }
